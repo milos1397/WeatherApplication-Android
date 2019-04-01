@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">WeatherForecast</string>
+    <string name="name">Vremenska prognoza</string>
+    <string name="location">Lokacija:</string>
+    <string name="show">Prikaži</string>
+    <string name="day">Dan:</string>
+    <string name="temp">Temperatura</string>
+    <string name="sun">Izlazak i zalazak sunca\n</string>
+    <string name="wind">Vetar</string>
+    <string name="monday">Ponedeljak</string>
+    <string name="tuesday">Utorak</string>
+    <string name="wednesday">Sreda</string>
+    <string name="thursday">Četvrtak</string>
+    <string name="friday">Petak</string>
+    <string name="saturday">Subota</string>
+    <string name="sunday">Nedelja</string>
+    <string name="error">Greška</string>
+
+
+
+
+
+</resources>

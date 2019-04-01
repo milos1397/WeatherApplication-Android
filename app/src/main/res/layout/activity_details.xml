@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_green">
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        />
+    <TextView
+        android:id="@+id/day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        />
+    <LinearLayout
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/temp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/temp" />
+        <Button
+            android:id="@+id/sun"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/sun"/>
+        <Button
+            android:id="@+id/wind"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/wind"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/sun"
+                />
+            <TextView
+                android:id="@+id/dataTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Temperatura: 11"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/dark_blue"/>
+            <TextView
+                android:id="@+id/dataPress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pritisak: 1003bar"
+                android:textSize="20dp"
+                android:textColor="@color/dark_blue"/>
+            <TextView
+                android:id="@+id/dataHum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vlažnost: 75%"
+                android:textSize="20dp"
+                android:textColor="@color/dark_blue"/>
+        </LinearLayout>
+    <TextView
+        android:id="@+id/sunRiseSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Izlazak sunca: 6:45
+Zalazak sunca: 18:58"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/dark_blue"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="Brzina: 4.1
+Pravac: N"/>
+    </FrameLayout>
+</LinearLayout>
