@@ -7,6 +7,7 @@
     <string name="temp">Temperatura</string>
     <string name="sun">Izlazak i zalazak sunca\n</string>
     <string name="wind">Vetar</string>
+    <string name="add">Dodaj</string>
     <string name="monday">Ponedeljak</string>
     <string name="tuesday">Utorak</string>
     <string name="wednesday">Sreda</string>
@@ -21,14 +22,12 @@
     <string name="tempData">Temperatura: 11</string>
     <string name="pressData">Pritisak: 1003bar</string>
     <string name="sunData">Izlazak sunca: 6:45 \nZalazak sunca: 18:58</string>
-
     <string-array name="value_arrays">
         <item>F</item>
         <item>C</item>
     </string-array>
-
-
-
-
+    <string name="belgrade">Beograd</string>
+    <string name="zagreb">Zagreb</string>
+    <string name="sarajevo">Sarajevo</string>
 
 </resources>

@@ -4,35 +4,54 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
 
-    Button show;
+    private Button add;
     EditText loc;
-    String cityName;
+    //String cityName;
+    private CustomAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        show=(Button)findViewById(R.id.show);
-        //loc=(EditText)findViewById(R.id.city);
-        show.setOnClickListener(this);
+
+        add=(Button)findViewById(R.id.add);
+        add.setOnClickListener(this);
+
+
+
+        adapter = new CustomAdapter(this);
+        adapter.addCity(new City(getString(R.string.belgrade)));
+        adapter.addCity(new City(getString(R.string.zagreb)));
+        adapter.addCity(new City(getString(R.string.sarajevo)));
+
+        ListView list = (ListView) findViewById(R.id.cityList);
+        list.setAdapter(adapter);
+        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int pos, long id) {
+                adapter.removeCity(pos);
+                return true;
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
+        ListView list = (ListView) findViewById(R.id.cityList);
+        list.setAdapter(adapter);
         switch(v.getId()){
-            case R.id.show:
-                Bundle location = new Bundle();
-                loc=(EditText)findViewById(R.id.city);
-                String cityName=loc.getText().toString();
-                location.putString("City_name",cityName);
-                Intent onShowClick=new Intent(MainActivity.this,DetailsActivity.class);
-                onShowClick.putExtras(location);
-                MainActivity.this.startActivity(onShowClick);
+            case R.id.add:
+                loc=(EditText)findViewById(R.id.loc);
+                String text=loc.getText().toString();
+                adapter.addCity(new City(text));
         }
     }
 }
