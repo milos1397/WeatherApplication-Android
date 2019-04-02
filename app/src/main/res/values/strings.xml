@@ -15,6 +15,17 @@
     <string name="saturday">Subota</string>
     <string name="sunday">Nedelja</string>
     <string name="error">Greška</string>
+    <string name="value">Jedinica</string>
+    <string name="windData">Brzina vetra: 4.1 \nPravac: N</string>
+    <string name="humData">Vlažnost: 75%</string>
+    <string name="tempData">Temperatura: 11</string>
+    <string name="pressData">Pritisak: 1003bar</string>
+    <string name="sunData">Izlazak sunca: 6:45 \nZalazak sunca: 18:58</string>
+
+    <string-array name="value_arrays">
+        <item>F</item>
+        <item>C</item>
+    </string-array>
 
 
 

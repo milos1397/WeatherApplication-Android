@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -17,24 +18,33 @@ import java.util.TimeZone;
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView tCity,tDay,tTemp,tPress,tWind,tSun,tHum;
+    TextView tCity,tDay,tTemp,tPress,tWind,tSun,tHum,tVal;
     ImageView iSun;
     Button bTemp,bSun,bWind;
+    Spinner sVal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        /*iSun=(ImageView)findViewById(R.id.img);
-        iSun.setVisibility(View.INVISIBLE);
+        iSun=(ImageView)findViewById(R.id.img);
+        tVal=(TextView) findViewById(R.id.value);
         tTemp=(TextView) findViewById(R.id.dataTemp);
-        tTemp.setVisibility(View.INVISIBLE);
         tPress=(TextView)findViewById(R.id.dataPress);
+        tWind=(TextView)findViewById(R.id.dataWind);
+        tSun=(TextView)findViewById(R.id.dataSun);
+        sVal=(Spinner)findViewById(R.id.tempOpt);
+        tHum=(TextView)findViewById(R.id.dataHum);
+        iSun.setVisibility(View.INVISIBLE);
+        tTemp.setVisibility(View.INVISIBLE);
         tPress.setVisibility(View.INVISIBLE);
-        tWind=(TextView)findViewById(R.id.dataHum);
         tWind.setVisibility(View.INVISIBLE);
-        tSun=(TextView)findViewById(R.id.sunRiseSet);
-        tSun.setVisibility(View.INVISIBLE);*/
+        tSun.setVisibility(View.INVISIBLE);
+        sVal.setVisibility(View.INVISIBLE);
+        tHum.setVisibility(View.INVISIBLE);
+        tVal.setVisibility(View.INVISIBLE);
+
+
 
 
         Bundle bundle = getIntent().getExtras();
@@ -69,8 +79,10 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         tTemp=(TextView) findViewById(R.id.dataTemp);
         tPress=(TextView)findViewById(R.id.dataPress);
         tHum=(TextView)findViewById(R.id.dataHum);
-        tSun=(TextView)findViewById(R.id.sunRiseSet);
-        tWind=(TextView)findViewById(R.id.)
+        tSun=(TextView)findViewById(R.id.dataSun);
+        tWind=(TextView)findViewById(R.id.dataWind);
+        sVal=(Spinner)findViewById(R.id.tempOpt);
+        tVal=(TextView) findViewById(R.id.value);
         switch (v.getId()){
             case R.id.sun:
                 tSun.setVisibility(View.VISIBLE);
@@ -78,21 +90,29 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                 tTemp.setVisibility(View.INVISIBLE);
                 tPress.setVisibility(View.INVISIBLE);
                 tWind.setVisibility(View.INVISIBLE);
+                sVal.setVisibility(View.INVISIBLE);
+                tHum.setVisibility(View.INVISIBLE);
+                tVal.setVisibility(View.INVISIBLE);
                 break;
             case R.id.temp:
                 tSun.setVisibility(View.INVISIBLE);
                 iSun.setVisibility(View.VISIBLE);;
                 tTemp.setVisibility(View.VISIBLE);
                 tPress.setVisibility(View.VISIBLE);;
-                tWind.setVisibility(View.VISIBLE);
+                tWind.setVisibility(View.INVISIBLE);
+                tHum.setVisibility(View.VISIBLE);
+                sVal.setVisibility(View.VISIBLE);
+                tVal.setVisibility(View.VISIBLE);
                 break;
             case R.id.wind:
                 iSun.setVisibility(View.INVISIBLE);
                 tTemp.setVisibility(View.INVISIBLE);
                 tPress.setVisibility(View.INVISIBLE);
                 tWind.setVisibility(View.VISIBLE);
-
-
+                sVal.setVisibility(View.INVISIBLE);
+                tSun.setVisibility(View.INVISIBLE);
+                tHum.setVisibility(View.INVISIBLE);
+                tVal.setVisibility(View.INVISIBLE);
         }
     }
     public String getInSerbian(int n){

@@ -54,18 +54,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <ImageView
-                android:id="@+id/img"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/sun"
-                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/sun" />
+                <TextView
+                    android:id="@+id/value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginLeft="100dp"
+                    android:text="@string/value"
+                    android:textSize="20dp"
+                    android:textColor="@color/dark_blue"/>
+                <Spinner
+                    android:id="@+id/tempOpt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:entries="@array/value_arrays"
+                    />
+            </LinearLayout>
             <TextView
                 android:id="@+id/dataTemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Temperatura: 11"
+                android:text="@string/tempData"
                 android:textSize="20dp"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/dark_blue"/>
@@ -73,30 +92,32 @@
                 android:id="@+id/dataPress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pritisak: 1003bar"
+                android:text="@string/pressData"
                 android:textSize="20dp"
                 android:textColor="@color/dark_blue"/>
             <TextView
                 android:id="@+id/dataHum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vlažnost: 75%"
+                android:text="@string/humData"
                 android:textSize="20dp"
                 android:textColor="@color/dark_blue"/>
         </LinearLayout>
     <TextView
-        android:id="@+id/sunRiseSet"
+        android:id="@+id/dataSun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Izlazak sunca: 6:45
-Zalazak sunca: 18:58"
+        android:text="@string/sunData"
         android:textSize="20dp"
         android:layout_marginTop="20dp"
         android:textColor="@color/dark_blue"/>
     <TextView
+        android:id="@+id/dataWind"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="Brzina: 4.1
-Pravac: N"/>
+        android:text="@string/windData"
+        android:textSize="20dp"
+        android:textColor="@color/dark_blue"/>
     </FrameLayout>
 </LinearLayout>
