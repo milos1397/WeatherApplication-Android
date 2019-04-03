@@ -13,9 +13,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private Button add;
-    EditText loc;
-    //String cityName;
+    private EditText loc;
     private CustomAdapter adapter;
+    private ListView list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter.addCity(new City(getString(R.string.zagreb)));
         adapter.addCity(new City(getString(R.string.sarajevo)));
 
-        ListView list = (ListView) findViewById(R.id.cityList);
+        list = (ListView) findViewById(R.id.cityList);
         list.setAdapter(adapter);
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -45,12 +45,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        ListView list = (ListView) findViewById(R.id.cityList);
         list.setAdapter(adapter);
         switch(v.getId()){
             case R.id.add:
                 loc=(EditText)findViewById(R.id.loc);
                 String text=loc.getText().toString();
+                loc.getText().clear();
                 adapter.addCity(new City(text));
         }
     }

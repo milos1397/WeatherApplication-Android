@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">WeatherForecast</string>
     <string name="name">Vremenska prognoza</string>
-    <string name="location">Lokacija:</string>
+    <string name="location">Lokacija: </string>
     <string name="show">Prikaži</string>
     <string name="day">Dan:</string>
     <string name="temp">Temperatura</string>
@@ -29,5 +29,6 @@
     <string name="belgrade">Beograd</string>
     <string name="zagreb">Zagreb</string>
     <string name="sarajevo">Sarajevo</string>
+    <string name="add_city">Dodaj grad</string>
 
 </resources>

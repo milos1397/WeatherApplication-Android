@@ -18,10 +18,10 @@ import java.util.TimeZone;
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView tCity,tDay,tTemp,tPress,tWind,tSun,tHum,tVal;
-    ImageView iSun;
-    Button bTemp,bSun,bWind;
-    Spinner sVal;
+    private TextView tCity,tDay,tTemp,tPress,tWind,tSun,tHum,tVal;
+    private ImageView iSun;
+    private Button bTemp,bSun,bWind;
+    private Spinner sVal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,19 +46,18 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
 
 
-
         Bundle bundle = getIntent().getExtras();
         String showtext = bundle.getString("City_name");
 
         tCity=(TextView)findViewById(R.id.city);
-        tCity.setText("Lokacija: "+ showtext);
+        tCity.setText(getString(R.string.location)+" "+showtext);
 
         Calendar localCalendar = Calendar.getInstance(TimeZone.getDefault());
         Date currentTime = localCalendar.getTime();
         int currentDayofWeek = localCalendar.get(Calendar.DAY_OF_WEEK);
         String day=getInSerbian(currentDayofWeek-1);
         tDay=(TextView)findViewById(R.id.day);
-        tDay.setText("Dan: "+day);
+        tDay.setText(getString(R.string.day)+" "+day);
 
         bTemp=(Button)findViewById(R.id.temp);
         bSun=(Button)findViewById(R.id.sun);
@@ -67,22 +66,10 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         bSun.setOnClickListener(this);
         bWind.setOnClickListener(this);
 
-
-
-
-
     }
 
     @Override
     public void onClick(View v) {
-        iSun=(ImageView)findViewById(R.id.img);
-        tTemp=(TextView) findViewById(R.id.dataTemp);
-        tPress=(TextView)findViewById(R.id.dataPress);
-        tHum=(TextView)findViewById(R.id.dataHum);
-        tSun=(TextView)findViewById(R.id.dataSun);
-        tWind=(TextView)findViewById(R.id.dataWind);
-        sVal=(Spinner)findViewById(R.id.tempOpt);
-        tVal=(TextView) findViewById(R.id.value);
         switch (v.getId()){
             case R.id.sun:
                 tSun.setVisibility(View.VISIBLE);
