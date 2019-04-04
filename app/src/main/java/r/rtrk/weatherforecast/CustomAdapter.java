@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,6 +84,7 @@ public class CustomAdapter extends BaseAdapter {
             ViewHolder holder = new ViewHolder();
             holder.check = (RadioButton) view.findViewById(R.id.checkCity);
             holder.name = (TextView) view.findViewById(R.id.cityName);
+            holder.image=(ImageView)view.findViewById(R.id.city_img);
             view.setTag(holder);
         }
 
@@ -90,6 +92,7 @@ public class CustomAdapter extends BaseAdapter {
         ViewHolder holder = (ViewHolder) view.getTag();
         //holder.image.setImageDrawable(character.mImage);
         holder.name.setText(mCity.mName);
+        holder.image.setImageDrawable(mCity.mImage);
         holder.check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,6 +108,21 @@ public class CustomAdapter extends BaseAdapter {
             }
 
         });
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(mContext, DetailsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("City_name", mCity.mName.toString());
+                //bundle.putInt("ContactID", contactsRow.getId());
+                intent.putExtras(bundle);
+                mContext.startActivity(intent);
+                //rBttn=(RadioButton)v;
+               // rBttn.setChecked(false);
+            }
+
+        });
 
 
         return view;
@@ -112,6 +130,6 @@ public class CustomAdapter extends BaseAdapter {
     private class ViewHolder {
         public RadioButton check = null;
         public TextView name = null;
-
+        public ImageView image=null;
     }
 }

@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         adapter = new CustomAdapter(this);
-        adapter.addCity(new City(getString(R.string.belgrade)));
-        adapter.addCity(new City(getString(R.string.zagreb)));
-        adapter.addCity(new City(getString(R.string.sarajevo)));
+        adapter.addCity(new City(getString(R.string.belgrade),getResources().getDrawable(R.drawable.city)));
+        adapter.addCity(new City(getString(R.string.zagreb),getResources().getDrawable(R.drawable.city)));
+        adapter.addCity(new City(getString(R.string.sarajevo),getResources().getDrawable(R.drawable.city)));
 
         list = (ListView) findViewById(R.id.cityList);
         list.setAdapter(adapter);
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 loc=(EditText)findViewById(R.id.loc);
                 String text=loc.getText().toString();
                 loc.getText().clear();
-                adapter.addCity(new City(text));
+                adapter.addCity(new City(text,getResources().getDrawable(R.drawable.city)));
         }
     }
 }
