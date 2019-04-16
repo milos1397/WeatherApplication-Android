@@ -2,26 +2,40 @@ package r.rtrk.weatherforecast;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.TimeZone;
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView tCity,tDay,tTemp,tPress,tWind,tSun,tHum,tVal;
+    private TextView tCity,tDay,tTemp,tPress,tWindS,tWindD,tHum,tVal,tSunR,tSunS;
     private ImageView iSun;
     private Button bTemp,bSun,bWind;
     private Spinner sVal;
+    private HTTPHelper httpHelper;
+
+    String showtext;
+    public static String BASE_URL = "https://api.openweathermap.org/data/2.5/weather?q=";
+    public static String GRAD ;
+    public static String KEY = "&APPID=1c8772c9f12179930d9c1659860c15dc&units=metric";
+    public String GET_CITY;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,23 +45,27 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         tVal=(TextView) findViewById(R.id.value);
         tTemp=(TextView) findViewById(R.id.dataTemp);
         tPress=(TextView)findViewById(R.id.dataPress);
-        tWind=(TextView)findViewById(R.id.dataWind);
-        tSun=(TextView)findViewById(R.id.dataSun);
+        tWindS=(TextView)findViewById(R.id.windStrength);
+        tWindD=(TextView)findViewById(R.id.windDirection);
+        //tSun=(TextView)findViewById(R.id.dataSun);
+        tSunR=(TextView)findViewById(R.id.dataSunRise);
+        tSunS=(TextView)findViewById(R.id.dataSunSet);
         sVal=(Spinner)findViewById(R.id.tempOpt);
         tHum=(TextView)findViewById(R.id.dataHum);
         iSun.setVisibility(View.INVISIBLE);
         tTemp.setVisibility(View.INVISIBLE);
         tPress.setVisibility(View.INVISIBLE);
-        tWind.setVisibility(View.INVISIBLE);
-        tSun.setVisibility(View.INVISIBLE);
+        tWindS.setVisibility(View.INVISIBLE);
+        tWindD.setVisibility(View.INVISIBLE);
+        tSunR.setVisibility(View.INVISIBLE);
+        tSunS.setVisibility(View.INVISIBLE);
         sVal.setVisibility(View.INVISIBLE);
         tHum.setVisibility(View.INVISIBLE);
         tVal.setVisibility(View.INVISIBLE);
 
 
-
         Bundle bundle = getIntent().getExtras();
-        String showtext = bundle.getString("City_name");
+        showtext = bundle.getString("City_name");
 
         tCity=(TextView)findViewById(R.id.city);
         tCity.setText(getString(R.string.location)+" "+showtext);
@@ -58,6 +76,15 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         String day=getInSerbian(currentDayofWeek-1);
         tDay=(TextView)findViewById(R.id.day);
         tDay.setText(getString(R.string.day)+" "+day);
+
+        httpHelper=new HTTPHelper();
+
+        GRAD=showtext;
+        GET_CITY=BASE_URL+GRAD+KEY;
+        //Log.d("whole",GET_CITY);
+
+        GET_CITY= BASE_URL + GRAD + KEY;
+
 
         bTemp=(Button)findViewById(R.id.temp);
         bSun=(Button)findViewById(R.id.sun);
@@ -72,34 +99,119 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.sun:
-                tSun.setVisibility(View.VISIBLE);
+                tSunR.setVisibility(View.VISIBLE);
+                tSunS.setVisibility(View.VISIBLE);
                 iSun.setVisibility(View.INVISIBLE);
                 tTemp.setVisibility(View.INVISIBLE);
                 tPress.setVisibility(View.INVISIBLE);
-                tWind.setVisibility(View.INVISIBLE);
+                tWindS.setVisibility(View.INVISIBLE);
+                tWindD.setVisibility(View.INVISIBLE);
                 sVal.setVisibility(View.INVISIBLE);
                 tHum.setVisibility(View.INVISIBLE);
                 tVal.setVisibility(View.INVISIBLE);
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            Log.d("tread",GET_CITY);
+                            JSONObject jsonobject = httpHelper.getJSONObjectFromURL(GET_CITY);
+                            JSONObject sys = jsonobject.getJSONObject("sys");
+
+                            long rise=Long.valueOf(sys.get("sunrise").toString())*1000;
+                            Date date1=new Date(rise);
+                            final String sunrise=new SimpleDateFormat("hh:mma",Locale.ENGLISH).format(date1);
+
+                            long set=Long.valueOf(sys.get("sunset").toString())*1000;
+                            Date date2=new Date(set);
+                            final String sunset=new SimpleDateFormat("hh:mma",Locale.ENGLISH).format(date2);
+
+
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    Log.d("tread",GET_CITY);
+                                    tSunR.setText(getString(R.string.sunRise)+" "+sunrise);
+                                    tSunS.setText(getString(R.string.sunSet)+" "+sunset);
+                                }
+                            });
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
                 break;
             case R.id.temp:
-                tSun.setVisibility(View.INVISIBLE);
+                tSunR.setVisibility(View.INVISIBLE);
+                tSunS.setVisibility(View.INVISIBLE);
                 iSun.setVisibility(View.VISIBLE);;
                 tTemp.setVisibility(View.VISIBLE);
-                tPress.setVisibility(View.VISIBLE);;
-                tWind.setVisibility(View.INVISIBLE);
+                tPress.setVisibility(View.VISIBLE);
+                tWindS.setVisibility(View.INVISIBLE);
+                tWindD.setVisibility(View.INVISIBLE);
                 tHum.setVisibility(View.VISIBLE);
                 sVal.setVisibility(View.VISIBLE);
                 tVal.setVisibility(View.VISIBLE);
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            JSONObject jsonobject = httpHelper.getJSONObjectFromURL(GET_CITY);
+                            JSONObject main = jsonobject.getJSONObject("main");
+                            final String temperature=main.get("temp").toString();
+                            final String pressure=main.get("pressure").toString();
+                            final String humidity=main.get("humidity").toString();
+
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    tTemp.setText(getString(R.string.tempData)+" "+temperature);
+                                    tPress.setText(getString(R.string.pressData)+" "+pressure+getString(R.string.bar));
+                                    tHum.setText(getString(R.string.humData)+" "+humidity+getString(R.string.percent));
+                                }
+                            });
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
                 break;
             case R.id.wind:
+                tSunS.setVisibility(View.INVISIBLE);
+                tSunR.setVisibility(View.INVISIBLE);
                 iSun.setVisibility(View.INVISIBLE);
                 tTemp.setVisibility(View.INVISIBLE);
                 tPress.setVisibility(View.INVISIBLE);
-                tWind.setVisibility(View.VISIBLE);
+                tWindS.setVisibility(View.VISIBLE);
+                tWindD.setVisibility(View.VISIBLE);
                 sVal.setVisibility(View.INVISIBLE);
-                tSun.setVisibility(View.INVISIBLE);
                 tHum.setVisibility(View.INVISIBLE);
                 tVal.setVisibility(View.INVISIBLE);
+
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            JSONObject jsonobject = httpHelper.getJSONObjectFromURL(GET_CITY);
+                            JSONObject wind = jsonobject.getJSONObject("wind");
+                            final String strength=wind.get("speed").toString();
+                            final String temp=wind.get("deg").toString();
+                            double value = Double.parseDouble(temp);
+                            final String direction=convertDegrees(value);
+
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    tWindS.setText(getString(R.string.windStrength)+" "+strength);
+                                    tWindD.setText(getString(R.string.windDirection)+" "+direction);
+                                }
+                            });
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+
+
         }
     }
     public String getInSerbian(int n){
@@ -132,5 +244,26 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
 
         }
+    }
+
+    public String convertDegrees(double degrees){
+        if(degrees>337.5)
+            return "North";
+        if(degrees>292.5)
+            return "Noth West";
+        if(degrees>247.5)
+            return "West";
+        if(degrees>202.5)
+            return "South West";
+        if(degrees>157.5)
+            return "South";
+        if(degrees>122.5)
+            return "South East";
+        if(degrees>67.5)
+            return "East";
+        if(degrees>22.5)
+            return "North East";
+        else
+            return "North";
     }
 }

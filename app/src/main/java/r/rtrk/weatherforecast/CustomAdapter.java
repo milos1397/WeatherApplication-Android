@@ -39,7 +39,8 @@ public class CustomAdapter extends BaseAdapter {
         }
         if(inList==false) {
             mCity.add(city);
-            //Toast.makeText()
+        }else{
+            Toast.makeText(mContext,R.string.toast,Toast.LENGTH_SHORT).show();
         }
         notifyDataSetChanged();
     }

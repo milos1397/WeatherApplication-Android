@@ -17,11 +17,13 @@
     <string name="sunday">Nedelja</string>
     <string name="error">Greška</string>
     <string name="value">Jedinica</string>
-    <string name="windData">Brzina vetra: 4.1 \nPravac: N</string>
-    <string name="humData">Vlažnost: 75%</string>
-    <string name="tempData">Temperatura: 11</string>
-    <string name="pressData">Pritisak: 1003bar</string>
-    <string name="sunData">Izlazak sunca: 6:45 \nZalazak sunca: 18:58</string>
+    <string name="windStrength">Brzina vetra: </string>
+    <string name="windDirection">Pravac vetra: </string>
+    <string name="humData">Vlažnost: </string>
+    <string name="tempData">Temperatura: </string>
+    <string name="pressData">Pritisak: </string>
+    <string name="sunRise">Izlazak sunca: </string>
+    <string name="sunSet">Zalazak sunca: </string>
     <string-array name="value_arrays">
         <item>F</item>
         <item>C</item>
@@ -30,5 +32,10 @@
     <string name="zagreb">Zagreb</string>
     <string name="sarajevo">Sarajevo</string>
     <string name="add_city">Dodaj grad</string>
+    <string name="toast">Grad je ili već u listi ili niste uneli grad</string>
+    <string name="bar">mbar</string>
+    <string name="percent">%</string>
+
+
 
 </resources>

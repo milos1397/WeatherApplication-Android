@@ -103,21 +103,47 @@
                 android:textSize="20dp"
                 android:textColor="@color/dark_blue"/>
         </LinearLayout>
-    <TextView
-        android:id="@+id/dataSun"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sunData"
-        android:textSize="20dp"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/dark_blue"/>
-    <TextView
-        android:id="@+id/dataWind"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/windData"
-        android:textSize="20dp"
-        android:textColor="@color/dark_blue"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/dataSunRise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sunRise"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/dark_blue"/>
+            <TextView
+                android:id="@+id/dataSunSet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sunSet"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/dark_blue"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/windStrength"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/windStrength"
+                android:textSize="20dp"
+                android:textColor="@color/dark_blue"/>
+            <TextView
+                android:id="@+id/windDirection"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/windDirection"
+                android:textSize="20dp"
+                android:textColor="@color/dark_blue"/>
+        </LinearLayout>
     </FrameLayout>
 </LinearLayout>
