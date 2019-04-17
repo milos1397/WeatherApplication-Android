@@ -6,4 +6,5 @@
     <color name="dark_blue">#000066</color>
     <color name="orange">#ffcc00</color>
     <color name="light_green">#99ffcc</color>
+    <color name="black">#000000</color>
 </resources>

@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         add=(Button)findViewById(R.id.add);
         add.setOnClickListener(this);
 
-        //Log.d("my_tag",httpHelper1.GET_CITY);
 
 
 

@@ -24,7 +24,7 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class DetailsActivity extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
+public class DetailsActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView tCity,tDay,tTemp,tPress,tWindS,tWindD,tHum,tVal,tSunR,tSunS;
     private ImageView iSun;
@@ -87,7 +87,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
        adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_dropdown_item, values);
         sVal.setAdapter(adapter);
-        sVal.setOnItemSelectedListener(this);
+       // sVal.setOnItemSelectedListener(this);
 
         httpHelper=new HTTPHelper();
 
@@ -177,7 +177,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                                     String temperatureHelp=toFahrenheit(value);
                                     tTemp.setText(getString(R.string.tempData)+" "+temperatureHelp+getString(R.string.fahr));
                                     sVal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                        @Override
+                                       // @Override
                                         public void onItemSelected(AdapterView<?> arg0, View arg1,
                                                                    int arg2, long arg3) {
                                             String selected=arg0.getItemAtPosition(arg2).toString();
@@ -193,7 +193,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                                             }
                                         }
 
-                                        @Override
+                                        //@Override
                                         public void onNothingSelected(AdapterView<?> arg0) {
                                             double value = Double.parseDouble(temperature);
                                             String temperatureHelp=toFahrenheit(value);
@@ -314,16 +314,6 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     public String toCelsius(double temp) {
         int helper=(int)(((temp - 32) * 5) / 9);
         return String.valueOf(helper);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
 }
