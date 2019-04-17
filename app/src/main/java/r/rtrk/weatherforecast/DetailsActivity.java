@@ -35,6 +35,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
 
     String showtext;
+    public ArrayAdapter<String> adapter;
     public static String BASE_URL = "https://api.openweathermap.org/data/2.5/weather?q=";
     public static String GRAD ;
     public static String KEY = "&APPID=1c8772c9f12179930d9c1659860c15dc";
@@ -52,7 +53,6 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         tPress=(TextView)findViewById(R.id.dataPress);
         tWindS=(TextView)findViewById(R.id.windStrength);
         tWindD=(TextView)findViewById(R.id.windDirection);
-        //tSun=(TextView)findViewById(R.id.dataSun);
         tSunR=(TextView)findViewById(R.id.dataSunRise);
         tSunS=(TextView)findViewById(R.id.dataSunSet);
         sVal=(Spinner)findViewById(R.id.tempOpt);
@@ -84,7 +84,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
 
         values = getResources().getStringArray(R.array.value_arrays);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+       adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_dropdown_item, values);
         sVal.setAdapter(adapter);
         sVal.setOnItemSelectedListener(this);
@@ -151,6 +151,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                 }).start();
                 break;
             case R.id.temp:
+                sVal.setAdapter(adapter);
                 tSunR.setVisibility(View.INVISIBLE);
                 tSunS.setVisibility(View.INVISIBLE);
                 iSun.setVisibility(View.VISIBLE);;

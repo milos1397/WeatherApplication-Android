@@ -28,7 +28,7 @@
         <item>F</item>
         <item>°C</item>
     </string-array>
-    <string name="belgrade">Beograd</string>
+    <string name="belgrade">Belgrade</string>
     <string name="zagreb">Zagreb</string>
     <string name="sarajevo">Sarajevo</string>
     <string name="add_city">Dodaj grad</string>
