@@ -26,7 +26,7 @@
     <string name="sunSet">Zalazak sunca: </string>
     <string-array name="value_arrays">
         <item>F</item>
-        <item>C</item>
+        <item>°C</item>
     </string-array>
     <string name="belgrade">Beograd</string>
     <string name="zagreb">Zagreb</string>
@@ -35,6 +35,9 @@
     <string name="toast">Grad je ili već u listi ili niste uneli grad</string>
     <string name="bar">mbar</string>
     <string name="percent">%</string>
+    <string name="cels">°C</string>
+    <string name="fahr">F</string>
+
 
 
 

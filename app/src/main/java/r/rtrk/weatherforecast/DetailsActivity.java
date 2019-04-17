@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -22,18 +24,21 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
+public class DetailsActivity extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
 
     private TextView tCity,tDay,tTemp,tPress,tWindS,tWindD,tHum,tVal,tSunR,tSunS;
     private ImageView iSun;
     private Button bTemp,bSun,bWind;
     private Spinner sVal;
     private HTTPHelper httpHelper;
+    String[] values;
+
 
     String showtext;
     public static String BASE_URL = "https://api.openweathermap.org/data/2.5/weather?q=";
     public static String GRAD ;
-    public static String KEY = "&APPID=1c8772c9f12179930d9c1659860c15dc&units=metric";
+    public static String KEY = "&APPID=1c8772c9f12179930d9c1659860c15dc";
+    public String MEASURE_IN="&units=imperial";
     public String GET_CITY;
 
 
@@ -77,13 +82,18 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         tDay=(TextView)findViewById(R.id.day);
         tDay.setText(getString(R.string.day)+" "+day);
 
+
+        values = getResources().getStringArray(R.array.value_arrays);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_dropdown_item, values);
+        sVal.setAdapter(adapter);
+        sVal.setOnItemSelectedListener(this);
+
         httpHelper=new HTTPHelper();
 
         GRAD=showtext;
-        GET_CITY=BASE_URL+GRAD+KEY;
-        //Log.d("whole",GET_CITY);
 
-        GET_CITY= BASE_URL + GRAD + KEY;
+        GET_CITY= BASE_URL + GRAD + KEY + MEASURE_IN;
 
 
         bTemp=(Button)findViewById(R.id.temp);
@@ -162,7 +172,33 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
                             runOnUiThread(new Runnable() {
                                 public void run() {
-                                    tTemp.setText(getString(R.string.tempData)+" "+temperature);
+                                    double value = Double.parseDouble(temperature);
+                                    String temperatureHelp=toFahrenheit(value);
+                                    tTemp.setText(getString(R.string.tempData)+" "+temperatureHelp+getString(R.string.fahr));
+                                    sVal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                        @Override
+                                        public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                                                   int arg2, long arg3) {
+                                            String selected=arg0.getItemAtPosition(arg2).toString();
+                                            if(selected.equals("°C")){
+                                                double value = Double.parseDouble(temperature);
+                                                String temperatureHelp=toCelsius(value);
+                                                tTemp.setText(getString(R.string.tempData)+" "+temperatureHelp+getString(R.string.cels));
+
+                                            }else{
+                                                double value = Double.parseDouble(temperature);
+                                                String temperatureHelp=toFahrenheit(value);
+                                                tTemp.setText(getString(R.string.tempData)+" "+temperatureHelp+getString(R.string.fahr));
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onNothingSelected(AdapterView<?> arg0) {
+                                            double value = Double.parseDouble(temperature);
+                                            String temperatureHelp=toFahrenheit(value);
+                                            tTemp.setText(getString(R.string.tempData)+" "+temperatureHelp);
+                                        }
+                                    });
                                     tPress.setText(getString(R.string.pressData)+" "+pressure+getString(R.string.bar));
                                     tHum.setText(getString(R.string.humData)+" "+humidity+getString(R.string.percent));
                                 }
@@ -266,4 +302,27 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         else
             return "North";
     }
+
+
+    public String toFahrenheit(double temp) {
+        int helper=(int)(temp * 5/9 + 32);
+        return String.valueOf(helper);
+    }
+
+
+    public String toCelsius(double temp) {
+        int helper=(int)(((temp - 32) * 5) / 9);
+        return String.valueOf(helper);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
 }
