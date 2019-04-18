@@ -285,23 +285,23 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
     public String convertDegrees(double degrees){
         if(degrees>337.5)
-            return "North";
+            return getString(R.string.north);
         if(degrees>292.5)
-            return "Noth West";
+            return getString(R.string.nw);
         if(degrees>247.5)
-            return "West";
+            return getString(R.string.west);
         if(degrees>202.5)
-            return "South West";
+            return getString(R.string.sw);
         if(degrees>157.5)
-            return "South";
+            return getString(R.string.south);
         if(degrees>122.5)
-            return "South East";
+            return getString(R.string.se);
         if(degrees>67.5)
-            return "East";
+            return getString(R.string.east);
         if(degrees>22.5)
-            return "North East";
+            return getString(R.string.ne);
         else
-            return "North";
+            return getString(R.string.north);
     }
 
 

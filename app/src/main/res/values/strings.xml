@@ -37,6 +37,14 @@
     <string name="percent">%</string>
     <string name="cels">°C</string>
     <string name="fahr">F</string>
+    <string name="west">Zapad</string>
+    <string name="east">Istok</string>
+    <string name="north">Sever</string>
+    <string name="south">Jug</string>
+    <string name="nw">Severozapad</string>
+    <string name="sw">Jugozapad</string>
+    <string name="se">Jugoistok</string>
+    <string name="ne">Severoistok</string>
 
 
 
