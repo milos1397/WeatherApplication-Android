@@ -3,7 +3,7 @@
     <string name="name">Vremenska prognoza</string>
     <string name="location">Lokacija: </string>
     <string name="show">Prikaži</string>
-    <string name="day">Dan:</string>
+    <string name="date">Datum:</string>
     <string name="temp">Temperatura</string>
     <string name="sun">Izlazak i zalazak sunca\n</string>
     <string name="wind">Vetar</string>
@@ -29,8 +29,8 @@
         <item>°C</item>
     </string-array>
     <string name="belgrade">Belgrade</string>
-    <string name="zagreb">Zagreb</string>
-    <string name="sarajevo">Sarajevo</string>
+    <string name="paris">Paris</string>
+    <string name="rome">Rome</string>
     <string name="add_city">Dodaj grad</string>
     <string name="toast">Grad je ili već u listi ili niste uneli grad</string>
     <string name="bar">mbar</string>
@@ -45,8 +45,16 @@
     <string name="sw">Jugozapad</string>
     <string name="se">Jugoistok</string>
     <string name="ne">Severoistok</string>
-
-
+    <string name="ref">Refresh</string>
+    <string name="lu">Last updated</string>
+    <string name="stats">Statistika</string>
+    <string name="lastweek">Poslednja nedelja:</string>
+    <string name="day">Dan</string>
+    <string name="pressure">Pritisak</string>
+    <string name="hummidity">Vlaznost</string>
+    <string name="mintemp">Minimalna temperatura je:</string>
+    <string name="maxtemp">Maksimalna temperatura je:</string>
+    <string name="stop_serv">SERVICE STOP</string>
 
 
 </resources>
