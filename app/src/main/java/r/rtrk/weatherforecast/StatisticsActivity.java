@@ -122,19 +122,19 @@ public class StatisticsActivity extends AppCompatActivity implements View.OnClic
     public void put(String day,Cursor cursor){
         if(day.equals(getString(R.string.monday))){
            // Log.d("dan",day);
-            tPon.setText(getString(R.string.monday)+"   "+cursor.getDouble(2)+"         "+cursor.getDouble(3)+"          "+cursor.getDouble(4));
+            tPon.setText(getString(R.string.monday)+"   "+cursor.getDouble(2)+"            "+cursor.getDouble(3)+"             "+cursor.getDouble(4));
         }else if(day.equals(getString(R.string.tuesday))){
-            tUto.setText(getString(R.string.tuesday)+"           "+cursor.getDouble(2)+"           "+cursor.getDouble(3)+"              "+cursor.getDouble(4));
+            tUto.setText(getString(R.string.tuesday)+"           "+cursor.getDouble(2)+"          "+cursor.getDouble(3)+"             "+cursor.getDouble(4));
         }else if(day.equals(getString(R.string.wednesday))){
-            tSre.setText(getString(R.string.wednesday)+"            "+cursor.getDouble(2)+"         "+cursor.getDouble(3)+"              "+cursor.getDouble(4));
+            tSre.setText(getString(R.string.wednesday)+"            "+cursor.getDouble(2)+"         "+cursor.getDouble(3)+"            "+cursor.getDouble(4));
         }else if(day.equals(getString(R.string.thursday))){
-            tCet.setText(getString(R.string.thursday)+"        "+cursor.getDouble(2)+"         "+cursor.getDouble(3)+"              "+cursor.getDouble(4));
+            tCet.setText(getString(R.string.thursday)+"        "+cursor.getDouble(2)+"           "+cursor.getDouble(3)+"              "+cursor.getDouble(4));
         }else if(day.equals(getString(R.string.friday))){
             tPet.setText(getString(R.string.friday)+"             "+cursor.getDouble(2)+"           "+cursor.getDouble(3)+"              "+cursor.getDouble(4));
         }else if(day.equals(getString(R.string.saturday))){
-            tSub.setText(getString(R.string.saturday)+"          "+cursor.getDouble(2)+"            "+cursor.getDouble(3)+"             "+cursor.getDouble(4));
+            tSub.setText(getString(R.string.saturday)+"          "+cursor.getDouble(2)+"          "+cursor.getDouble(3)+"             "+cursor.getDouble(4));
         }else{
-            tNed.setText(getString(R.string.sunday)+"         "+cursor.getDouble(2)+"           "+cursor.getDouble(3)+"             "+cursor.getDouble(4));
+            tNed.setText(getString(R.string.sunday)+"         "+cursor.getDouble(2)+"            "+cursor.getDouble(3)+"              "+cursor.getDouble(4));
         }
     }
 

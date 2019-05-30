@@ -43,6 +43,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     private Spinner sVal;
     private HTTPHelper httpHelper;
     String[] values;
+    private MyNDK myNDK;
 
 
     String showtext;//CITY NAME
@@ -115,7 +116,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         dataBase.insert(z1);
         dataBase.insert(z2);
         dataBase.insert(z3);
-        //dataBase.insert(z4);
+        dataBase.insert(z4);
         dataBase.insert(z5);
         dataBase.insert(z6);
         dataBase.insert(z7);
@@ -199,6 +200,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
         bindService(intent_city, this, Context.BIND_AUTO_CREATE);
 
+        myNDK=new MyNDK();
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -207,9 +209,9 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                 //Do something after 20 seconds
                 WeatherData read = dataBase.readFromDB(showtext);
                 fillFields(read);
-                handler.postDelayed(this, 3000);
+                handler.postDelayed(this, 13000);
             }
-        }, 3000);
+        }, 13000);
     }
 
     @Override
@@ -253,6 +255,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                 tVal.setVisibility(View.INVISIBLE);
                 break;
             case R.id.refresh:
+                sVal.setAdapter(adapter);
                 setData();
                 tLup.setVisibility(View.INVISIBLE);
                 break;
@@ -372,7 +375,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                             tSunR.setText(getString(R.string.sunRise)+" "+sunrise);
                             tSunS.setText(getString(R.string.sunSet)+" "+sunset);
                             double value = Double.parseDouble(temperature);
-                            String temperatureHelp=toFahrenheit(value);
+                            String temperatureHelp=String.valueOf(myNDK.convert((int)value,0));
                             tTemp.setText(getString(R.string.tempData)+" "+temperatureHelp+getString(R.string.fahr));
                             sVal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                 // @Override
@@ -381,12 +384,15 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                                     String selected=arg0.getItemAtPosition(arg2).toString();
                                     if(selected.equals("°C")){
                                         double value = Double.parseDouble(temperature);
-                                        String temperatureHelp=toCelsius(value);
+                                        //String temperatureHelp=toCelsius(value);
+                                        String temperatureHelp=String.valueOf(myNDK.convert((int)value,1));
                                         tTemp.setText(getString(R.string.tempData)+" "+temperatureHelp+getString(R.string.cels));
+                                        Log.d("temp",temperatureHelp);
 
                                     }else{
                                         double value = Double.parseDouble(temperature);
-                                        String temperatureHelp=toFahrenheit(value);
+                                        //String temperatureHelp=toFahrenheit(value);
+                                        String temperatureHelp=String.valueOf(myNDK.convert((int)value,0));
                                         tTemp.setText(getString(R.string.tempData)+" "+temperatureHelp+getString(R.string.fahr));
                                     }
                                 }
@@ -394,7 +400,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                                 //@Override
                                 public void onNothingSelected(AdapterView<?> arg0) {
                                     double value = Double.parseDouble(temperature);
-                                    String temperatureHelp=toFahrenheit(value);
+                                    String temperatureHelp=String.valueOf(myNDK.convert((int)value,0));
                                     tTemp.setText(getString(R.string.tempData)+" "+temperatureHelp);
                                 }
                             });
@@ -432,7 +438,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         }
         tSunR.setText(getString(R.string.sunRise)+" "+weatherData.getSunrise());
         tSunS.setText(getString(R.string.sunSet)+" "+weatherData.getSunset());
-        tTemp.setText(getString(R.string.tempData)+" "+weatherData.getTemperature());
+        //tTemp.setText(getString(R.string.tempData)+" "+weatherData.getTemperature());
         final double temperature= weatherData.getTemperature();
         sVal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             // @Override
@@ -440,11 +446,15 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                                        int arg2, long arg3) {
                 String selected=arg0.getItemAtPosition(arg2).toString();
                 if(selected.equals("°C")){
-                    String temperatureHelp=toCelsius(temperature);
+                    //String temperatureHelp=toCelsius(temperature);
+                    Log.d("temp",String.valueOf((int)temperature));
+                    String temperatureHelp=String.valueOf(myNDK.convert((int)temperature,1));
                     tTemp.setText(getString(R.string.tempData)+" "+temperatureHelp+getString(R.string.cels));
+                    Log.d("temp",temperatureHelp);
 
                 }else{
-                    String temperatureHelp=toFahrenheit(temperature);
+                    //String temperatureHelp=toFahrenheit(temperature);
+                    String temperatureHelp=String.valueOf(myNDK.convert((int)temperature,0));
                     tTemp.setText(getString(R.string.tempData)+" "+temperatureHelp+getString(R.string.fahr));
                 }
             }
@@ -452,7 +462,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
             //@Override
             public void onNothingSelected(AdapterView<?> arg0) {
                 double value = temperature;
-                String temperatureHelp=toFahrenheit(value);
+                String temperatureHelp=String.valueOf(myNDK.convert((int)temperature,1));
                 tTemp.setText(getString(R.string.tempData)+" "+temperatureHelp);
             }
         });

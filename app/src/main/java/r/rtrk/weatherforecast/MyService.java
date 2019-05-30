@@ -26,7 +26,7 @@ import java.util.Locale;
 public class MyService extends Service {
 
     private static final String LOG_TAG = "MyService";
-    private static final long PERIOD = 5000L; //milliseconds
+    private static final long PERIOD = 150000L; //milliseconds
     private String city,URL;
     private HTTPHelper httpHelper;
     private DBHelper dbHelper;
